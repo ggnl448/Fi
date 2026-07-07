@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Поиск</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Верхняя панель -->
+  <header class="topbar">
+    <button class="icon-btn" title="Меню">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <button class="btn-new">
+      <span class="plus">+</span> Новый
+    </button>
+
+    <div class="spacer"></div>
+
+    <button class="btn-share">
+      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7M16 6l-4-4-4 4M12 2v14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Поделиться
+    </button>
+  </header>
+
+  <!-- Выбор поисковой системы -->
+  <div class="engine-row">
+    <label for="engineSelect" class="engine-label">Поисковая система:</label>
+    <select id="engineSelect" class="engine-select">
+      <option value="duckduckgo" selected>DuckDuckGo</option>
+      <option value="google">Google</option>
+      <option value="bing">Bing</option>
+      <option value="yandex">Яндекс</option>
+    </select>
+    <span class="change-search-link" id="changeSearchLink">сменить поиск</span>
+  </div>
+
+  <!-- Поисковая строка -->
+  <form class="search-row" id="searchForm">
+    <input type="text" id="searchInput" class="search-input" placeholder="Задайте вопрос или введите запрос..." autocomplete="off">
+    <button type="submit" class="search-submit" title="Искать">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    </button>
+  </form>
+
+  <!-- Вкладки -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="answer">
+      <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16"><path d="M12 2l2.5 6.5L21 9l-5.5 4.5L17 21l-5-3.5L7 21l1.5-7.5L3 9l6.5-.5z" fill="currentColor"/></svg>
+      Ответ
+    </button>
+    <button class="tab" data-tab="links">
+      <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1.5 1.5M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1.5-1.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      Ссылки
+    </button>
+    <button class="tab" data-tab="images">
+      <svg class="tab-icon" viewBox="0 0 24 24" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Изображения
+    </button>
+  </nav>
+
+  <!-- Фильтры -->
+  <div class="filters">
+    <span class="filter-chip">Защищено ▾</span>
+    <span class="filter-chip">Регион ▾</span>
+    <span class="filter-chip">Безопасный поиск ▾</span>
+  </div>
+
+  <!-- ===== ВКЛАДКА: ОТВЕТ ===== -->
+  <section class="panel" id="panel-answer">
+
+    <div class="ai-switch-row">
+      <span class="ai-switch-label">сменить ИИ</span>
+      <div class="ai-buttons" id="aiButtons">
+        <button class="ai-btn" data-ai="gemini" data-url="https://gemini.google.com/app">
+          <span class="ai-dot gemini-dot"></span> Gemini
+        </button>
+        <button class="ai-btn" data-ai="chatgpt" data-url="https://chat.openai.com/?q=">
+          <span class="ai-dot chatgpt-dot"></span> ChatGPT.com
+        </button>
+        <button class="ai-btn active" data-ai="claude" data-url="https://claude.ai/new?q=">
+          <span class="ai-dot claude-dot"></span> claude.ai
+        </button>
+      </div>
+    </div>
+
+    <div class="answer-card" id="answerCard">
+      <div class="answer-source">
+        <span class="source-icon claude-dot"></span>
+        <div>
+          <div class="source-title">claude.ai</div>
+          <div class="source-url">https://claude.ai</div>
+        </div>
+      </div>
+      <p class="answer-text" id="answerText">
+        Введите запрос выше, чтобы получить ответ от выбранного ИИ. Сейчас выбран <b>claude.ai</b> — нажмите
+        «Искать», и запрос откроется в новой вкладке у выбранного ассистента.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== ВКЛАДКА: ССЫЛКИ ===== -->
+  <section class="panel hidden" id="panel-links">
+    <div class="links-empty" id="linksEmpty">
+      Введите запрос и нажмите «Искать» — ссылки откроются в выбранной поисковой системе (по умолчанию DuckDuckGo).
+    </div>
+    <div class="links-list" id="linksList"></div>
+  </section>
+
+  <!-- ===== ВКЛАДКА: ИЗОБРАЖЕНИЯ ===== -->
+  <section class="panel hidden" id="panel-images">
+    <div class="images-empty" id="imagesEmpty">
+      Введите запрос, чтобы увидеть подборку изображений.
+    </div>
+    <div class="images-grid" id="imagesGrid"></div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+                                                                         </html>
+                                                                         
