@@ -9,7 +9,7 @@ const SEARCH_ENGINES = {
 };
 
 const AI_ASSISTANTS = {
-  gemini:  { name: "Gemini",       host: "gemini.google.com", dot: "gemini-dot",  url: q => `https://gemini.google.com/app` },
+  gemini:  { name: "Gemini",       host: "gemini.google.com", dot: "gemini-dot",  url: q => `https://gemini.google.com/app${q ? "?q=" + encodeURIComponent(q) : ""}` },
   chatgpt: { name: "ChatGPT.com",  host: "chat.openai.com",   dot: "chatgpt-dot", url: q => `https://chat.openai.com/${q ? "?q=" + encodeURIComponent(q) : ""}` },
   claude:  { name: "claude.ai",    host: "claude.ai",         dot: "claude-dot",  url: q => `https://claude.ai/new${q ? "?q=" + encodeURIComponent(q) : ""}` }
 };
