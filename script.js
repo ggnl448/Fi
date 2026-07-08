@@ -182,3 +182,4 @@ function escapeHtml(str) {
 
 // Инициализация
 updateAnswerCard();
+updateBrowserChrome()
