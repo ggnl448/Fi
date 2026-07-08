@@ -180,6 +180,42 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+// ==========================================================
+// Имитация адресной строки и заголовка вкладки Firefox
+// ==========================================================
+const ffAddressText = document.getElementById("ffAddressText");
+const ffAddressBar  = document.getElementById("ffAddressBar");
+const ffTabTitle    = document.querySelector(".ff-tab-title");
+
+function updateBrowserChrome() {
+  const query = searchInput.value.trim();
+  const activeTab = document.querySelector(".tab.active").dataset.tab;
+
+  if (!query) {
+    ffAddressText.textContent = "поиск.local/начало";
+    ffTabTitle.textContent = "Поиск";
+    return;
+  }
+
+  if (activeTab === "answer") {
+    const ai = AI_ASSISTANTS[currentAI];
+    ffAddressText.textContent = `${ai.host}/…?q=${query}`;
+  } else if (activeTab === "links") {
+    const engine = SEARCH_ENGINES[engineSelect.value];
+    ffAddressText.textContent = `${engine.name.toLowerCase()}.com/search?q=${query}`;
+  } else if (activeTab === "images") {
+    ffAddressText.textContent = `поиск.local/изображения?q=${query}`;
+  }
+  ffTabTitle.textContent = `${query} — Поиск`;
+}
+
+searchInput.addEventListener("input", updateBrowserChrome);
+searchForm.addEventListener("submit", updateBrowserChrome);
+tabs.forEach(tab => tab.addEventListener("click", updateBrowserChrome));
+aiButtons.forEach(btn => btn.addEventListener("click", updateBrowserChrome));
+engineSelect.addEventListener("change", updateBrowserChrome);
+
 // Инициализация
 updateAnswerCard();
-updateBrowserChrome()
+updateBrowserChrome();
+  
