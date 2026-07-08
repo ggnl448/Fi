@@ -8,25 +8,63 @@
 </head>
 <body>
 
+<div class="firefox-window">
+
+  <!-- Полоса вкладок Firefox -->
+  <div class="ff-tabstrip">
+    <div class="ff-tab active">
+      <span class="ff-tab-favicon"></span>
+      <span class="ff-tab-title">Поиск</span>
+      <span class="ff-tab-close">×</span>
+    </div>
+    <button class="ff-tab-new" title="Новая вкладка">+</button>
+    <div class="ff-tabstrip-spacer"></div>
+    <button class="ff-win-btn" title="Свернуть">&#8211;</button>
+    <button class="ff-win-btn" title="Развернуть">&#9723;</button>
+    <button class="ff-win-btn ff-win-close" title="Закрыть">×</button>
+  </div>
+
+  <!-- Панель инструментов: навигация + адресная строка -->
+  <div class="ff-toolbar">
+    <div class="ff-nav-buttons">
+      <button class="ff-nav-btn" title="Назад">
+        <svg viewBox="0 0 16 16" width="16" height="16"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="ff-nav-btn" title="Вперёд">
+        <svg viewBox="0 0 16 16" width="16" height="16"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="ff-nav-btn" title="Обновить">
+        <svg viewBox="0 0 16 16" width="16" height="16"><path d="M13.5 8a5.5 5.5 0 11-1.7-4M13.5 3v4h-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="ff-address-bar" id="ffAddressBar">
+      <svg class="ff-lock" viewBox="0 0 16 16" width="13" height="13"><path d="M4 7V5a4 4 0 118 0v2M3.5 7h9a1 1 0 011 1v5a1 1 0 01-1 1h-9a1 1 0 01-1-1V8a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+      <span class="ff-address-text" id="ffAddressText">поиск.local/начало</span>
+      <svg class="ff-star" viewBox="0 0 16 16" width="15" height="15"><path d="M8 1.5l2 4 4.4.6-3.2 3.1.8 4.3L8 11.5l-4 2 .8-4.3L1.6 6.1 6 5.5z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>
+    </div>
+
+    <div class="ff-toolbar-icons">
+      <button class="ff-icon-btn" title="Расширения">
+        <svg viewBox="0 0 16 16" width="16" height="16"><path d="M6 2h4v2.5a1.5 1.5 0 003 0V2h1a1 1 0 011 1v4h-2.5a1.5 1.5 0 000 3H15v4a1 1 0 01-1 1h-4v-2.5a1.5 1.5 0 00-3 0V15H3a1 1 0 01-1-1v-4h2.5a1.5 1.5 0 000-3H2V3a1 1 0 011-1h3z" fill="currentColor" opacity="0.85"/></svg>
+      </button>
+      <button class="ff-icon-btn" title="Аккаунт">
+        <svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="5.5" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M2.5 14c1-3 3.2-4.5 5.5-4.5s4.5 1.5 5.5 4.5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>
+      </button>
+      <button class="ff-icon-btn" title="Меню">
+        <svg viewBox="0 0 16 16" width="16" height="16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Панель закладок -->
+  <div class="ff-bookmarks">
+    <span class="ff-bookmark">⭐ Избранное</span>
+    <span class="ff-bookmark">📌 Закреплённые</span>
+    <span class="ff-bookmark">🧩 Быстрый доступ</span>
+  </div>
+
 <div class="app">
-
-  <!-- Верхняя панель -->
-  <header class="topbar">
-    <button class="icon-btn" title="Меню">
-      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-
-    <button class="btn-new">
-      <span class="plus">+</span> Новый
-    </button>
-
-    <div class="spacer"></div>
-
-    <button class="btn-share">
-      <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7M16 6l-4-4-4 4M12 2v14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Поделиться
-    </button>
-  </header>
 
   <!-- Выбор поисковой системы -->
   <div class="engine-row">
@@ -119,11 +157,12 @@
     </div>
     <div class="images-grid" id="imagesGrid"></div>
   </section>
+
 </div>
+
 
 
 <script src="script.js"></script>
 </body>
 </html>
-
-                                                                         
+  
